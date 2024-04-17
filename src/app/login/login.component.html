@@ -1,0 +1,116 @@
+<body class="back">
+<div class="modal-content">
+<mat-tab-group class="tab-group"  mat-align-tabs="center" [selectedIndex]="0">
+   <mat-tab label="LOGIN">
+        <form  [formGroup]="loginForm" (ngSubmit)="validate()">
+            <div align="center">
+                <h1>Rent&Play</h1>
+            </div>
+            <div class="imgcontainer" >
+                <img class="img rounded-circle z-depth-1" data-holder-rendered="true" src="assets/img11.svg" class="avatar">
+            </div>
+
+            <div class="container form-group">
+                <label for="userid"><b>Username/Email</b></label>
+                <input type="text" placeholder="Enter Username" class="form-control" formControlName="userid"  required>
+                <div *ngIf="lSubmitted && loginForm.controls.userid.errors" class="error">
+                    <div class="text-danger" *ngIf="loginForm.controls.userid.errors.required">
+                        Username is required
+                    </div>
+                </div>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" class="form-control" formControlName="password" required>
+                <div *ngIf="lSubmitted && loginForm.controls.password.errors">
+                    <div class="text-danger" *ngIf="loginForm.controls.password.errors.required">
+                        Password is required
+                    </div>
+                </div>
+                <div style="padding-top: 5px;padding-bottom: 5px">
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                    <a  style="padding-left: 50px;color: blue" [routerLink]="['/forgotPassword']">Forgot password?</a>
+                </div>
+                <button type="submit">Login</button>
+            </div>
+            <div class="text-danger" *ngIf="loginFailedFlag">
+                <p>Login Failed! Invalid Username or Password</p>
+            </div>
+        </form>
+    </mat-tab>
+    <mat-tab label="SIGNUP">
+        <form  [formGroup]="signUpForm" (ngSubmit)="signup()">
+            <div align="center">
+                <h1>Rent&Play</h1>
+            </div>
+            <div class="imgcontainer">
+                <img class="img rounded-circle z-depth-1" data-holder-rendered="true" src="assets/img11.svg" class="avatar">
+            </div>
+
+            <div class="container form-group">
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter email" class="form-control" formControlName="email" required>
+                <div *ngIf="sSubmitted && signUpForm.controls.email.errors" class="error">
+                    <div class="text-danger" *ngIf="signUpForm.controls.email.errors.required">
+                        Email is required
+                    </div>
+                </div>
+
+                <button type="button" (click)="generateUserName()">Click to generate username</button>
+
+
+                <div style="padding-top: 10px">
+                <label for="username"><b>Username</b></label>
+                </div>
+                <input type="text" placeholder="username" [ngModel]="generatedUserName" class="form-control" formControlName = "username">
+
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" class="form-control" formControlName="password" required>
+                <div *ngIf="sSubmitted && signUpForm.controls.password.errors">
+                    <div class="text-danger" *ngIf="signUpForm.controls.password.errors.required">
+                        Password is required
+                    </div>
+                </div>
+
+                <!--label ><b>Security Questions</b></label-->
+                <div style="padding-top: 10px;padding-bottom: 10px">
+                <label for="mr" style="padding-right: 10px"><b>I'm a</b></label>
+
+                <mat-radio-group aria-label="Select an option" id = "mr"
+                                 (ngModelChange)="radioChange()" class="form-control" formControlName="radio" required>
+                    <mat-radio-button value="1" style="padding-right: 10px">Renter</mat-radio-button>
+                    <mat-radio-button value="2">Customer</mat-radio-button>
+                </mat-radio-group>
+                </div>
+
+
+                <div style="padding-top: 5px">
+                <label for="answer1"><b>Which is your favourite destination</b></label>
+                <input type="text" placeholder="Enter an answer" class="form-control" formControlName="answer1" required id="answer1">
+                <div *ngIf="sSubmitted && signUpForm.controls.answer1.errors">
+                    <div class="text-danger" *ngIf="signUpForm.controls.answer1.errors.required">
+                        Answer is required
+                    </div>
+                </div>
+                </div>
+
+                <div style="padding-top: 5px">
+                <label for="answer2"><b>Which is your favourite sport</b></label>
+                <input type="text" placeholder="Enter an answer" class="form-control" formControlName="answer2" required id  = "answer2">
+                <div *ngIf="sSubmitted && signUpForm.controls.answer2.errors">
+                    <div class="text-danger" *ngIf="signUpForm.controls.answer2.errors.required">
+                        Answer is required
+                    </div>
+                </div>
+                </div>
+
+
+                <button type="submit">Signup</button>
+            </div>
+            <ul class="list"></ul>
+            <!--div class="text-danger" *ngIf="loginFailedFlag">
+                <p>Login Failed! Invalid Username or Password</p>
+            </div-->
+        </form></mat-tab>
+</mat-tab-group>
+</div>
+<router-outlet></router-outlet>
+</body>

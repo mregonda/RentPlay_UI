@@ -1,0 +1,177 @@
+<body id="page-top">
+  
+  
+    <header class="masthead"> 
+      <div class="container">
+        <a class="btn btn-primary fixed-top1 py-3" [routerLink]="['/home']" style="padding: 5px;"><= Back</a>
+      <h2 class="text-uppercase font-weight-bold fixed-top py-3" style="color:#f4623a;padding-left:30px;margin-top:0%;margin-top:0px;font-size: 30px;">Rent&Play</h2>
+      </div>
+      <mat-tab-group class="tab-group"  mat-align-tabs="center" [selectedIndex]="0" style="margin-left: 6rem;margin-right: 5rem">
+
+        <mat-tab label="Current instrument rentals">
+          <br>
+          <br>
+          <table style="color:black; background-color:antiquewhite;" class="customercontent">
+          
+            <tbody>
+              
+              <tr>
+              
+                <th>ID</th> 
+                <th>Owner id</th>
+                <th>Instrument Name</th>
+                <th>Instrument</th>
+                <th>Instrument Category</th>
+                <th>Brand</th>
+                <th>Price paid</th>
+                <th>Age</th> 
+                <th style="width:200px">Rental Start Date</th>
+                <th style="width:200px">Rental End Date</th>
+                <th>Approved Status</th>
+             
+              </tr>
+             
+              <tr *ngFor="let req of cinfos" style="height:200px;">
+                
+                <td>{{req.id}}</td>
+                <td>{{req.ins_owner_details_id}}</td>
+                <td>{{req.instrumentName}}</td>
+                <td *ngIf="req.MediaLinks.length>0"><img src={{req.MediaLinks[0].mediaLink}} class="instrumentimg"></td>
+                <td>{{req.instrumentCategory}}</td>
+                <td>{{req.brandName}}</td>
+                <td>{{req.price}}$ </td>
+                <td>{{req.age}}</td>
+                <td>{{req.fromDate}}</td>
+                <td>{{req.toDate}}</td>
+                <td>Approved</td>
+                
+              </tr>
+              
+              
+            </tbody>
+          </table>
+
+        </mat-tab>
+
+        <mat-tab label="Past rentals">
+          <br>
+          <br>
+          <table style="color:black; background-color:antiquewhite;" class="customercontent">
+          
+            <tbody>
+              
+              <tr>
+              
+                <th>ID</th> 
+                <th>Owner id</th>
+                <th>Instrument Name</th>
+                <th>Instrument</th>
+                <th>Instrument Category</th>
+                <th>Brand</th>
+                <th>Price paid</th>
+                <th>Age</th> 
+                <th style="width:200px">Rental Start Date</th>
+                <th style="width:200px">Rental End Date</th>
+                <th>Returned Status</th>
+                
+                
+             
+              </tr>
+             
+              <tr *ngFor="let req of pinfos" style="height:200px;">
+                
+                <td>{{req.id}}</td>
+                <td>{{req.ins_owner_details_id}}</td>
+                <td>{{req.instrumentName}}</td>
+                <td *ngIf="req.MediaLinks.length>0"><img src={{req.MediaLinks[0].mediaLink}} class="instrumentimg"></td>
+                <td>{{req.instrumentCategory}}</td>
+                <td>{{req.brandName}}</td>
+                <td>{{req.price}}$ </td>
+                <td>{{req.age}}</td>
+                <td>{{req.fromDate}}</td>
+                <td>{{req.toDate}}</td>
+                <td>{{pmsg}}</td>
+                
+              </tr>
+              
+              
+            </tbody>
+          </table>
+          <br>
+          <br>
+          <div>
+          <p style="font-family:cursive; margin-left: 40%;color:hsl(343, 37%, 93%);text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;">Let us know about your experience!!</p>
+          <table style="border:groove;border-color:black;border:1 px thin; margin-left:20%">
+          <tr *ngFor="let req of pinfos" style="height:200px;">
+                <td>{{req.instrumentName}}</td>
+                <td *ngIf="req.MediaLinks.length>0"><img src={{req.MediaLinks[0].mediaLink}} class="instrumentimg"></td>
+                <td><tr><input type="text" #review placeholder="Write your review!" style="height: 150px;width:250px;margin:20px;">
+                </tr>
+                <tr><button class="btn btn-primary" (click)="addReview(req.id,review.value)">Submit</button></tr>
+                </td>
+                <td><tr><input type="text" #rating placeholder="Rate out of 10" style="width:100px;height:100px;margin: 10px;"></tr>
+                <tr><button class="btn btn-primary" (click)="addRating(req.id,rating.value)">Submit</button></tr></td>
+               
+          </table>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Orders in progress">
+          <br>
+          <br>
+        <table style="color:black; background-color:antiquewhite;" class="customercontent">
+          
+          <tbody>
+            
+            <tr style="height: 70px; width: 150px;">
+            
+              <th>ID</th> 
+              <th>Owner id</th>
+              <th>Instrument Name</th>
+              <th>Instrument Category</th>
+              <th>Brand</th>
+              <th>Price</th>
+              <th>Age</th> 
+              <th>Rental Start Date</th>
+              <th>Rental End Date</th>
+              <th>Paid</th>
+              <th>Approval Status</th>
+           
+            </tr>
+           
+            <tr *ngFor="let req of winfos" style="height: 60px;">
+              
+              <td>{{req.id}}</td>
+              <td>{{req.ins_owner_details_id}}</td>
+              <td>{{req.instrumentName}}</td>
+              <td>{{req.instrumentCategory}}</td>
+              <td>{{req.brandName}}</td>
+              <td>{{req.price}}$ </td>
+              <td>{{req.age}}</td>
+              <td>{{req.fromDate}}</td>
+              <td>{{req.toDate}}</td>
+              <td>Yes</td>
+              <td>In Progress</td>
+              
+            </tr>
+            
+            
+          </tbody>
+        </table>
+      </mat-tab>
+
+      </mat-tab-group>
+      <div  style="font-family:cursive;margin-left: 20%;padding-top: 120px; font-size:large;">
+        We would love to hear your experience of renting from our website! Write your reviews and rate your previous rentals!
+         <br>
+         <br>
+        Have any complaints? <br>
+        Write your complaint below and a staff member would get back to you within 1 business day<br>
+        <br>
+        <input type="text" placeholder="type your complaint here" style="height: 100px;width:300px;background-color:lightgoldenrodyellow">
+        &nbsp;&nbsp;<button class="btn btn-primary" onclick="alert('A staff member would get back to you soon!')">Submit</button>
+      </div>
+
+    </header>
+</body>
+

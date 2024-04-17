@@ -1,0 +1,108 @@
+<div class="back">
+    <div class="row">
+        <button  class="btn-primary btn btn-sm" (click)="routeToHome()">Back</button>
+
+        <h2 style="margin-left: 43%;font-style: italic;text-align: center;font-weight: lighter;font-family:serif;color:hsl(343, 37%, 93%);text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    ">Your Cart</h2>
+    </div>
+
+    <div *ngIf="!checkedOut">
+    <div class="instruments-body" *ngFor="let each of this.cartItems" style="margin-left: 80px;margin-right:100px;padding-top: 30px;padding-bottom: 20px;padding-left: 100px;border-style: groove;border-color: lightpink;border-width: 2px;height: 170px;">
+            <div class="row" style="padding-top: 20px">
+                <div style="padding-right: 20px">
+                    <img src={{each.MediaLinks[0].mediaLink}} class="instrumentimg">
+                </div>
+                <div class="column" style="padding-top: 20px">
+                <div class="row" style="padding-bottom: 30px">
+                    <label for="in"><b>Name:&nbsp;</b></label>
+                    <b style="color:lightpink;padding-left: 40px;" id="in">{{each.instrumentName}}</b>
+                </div>
+                <div class="row" style="padding-bottom: 30px">
+                    <label for="b"><b>Brand:&nbsp;</b></label>
+                    <b id="b" style="color:lightpink;padding-left: 35px">{{each.brandName}}</b>
+                </div>
+                <div class="row" style="padding-bottom: 30px">
+                    <label for="c"><b>Category:&nbsp;</b></label>
+                    <b id="c" style="color:lightpink;padding-left: 20px">{{each.instrumentCategory}}</b>
+                </div>
+                </div>
+                <div class="column" style="padding-left: 100px;padding-top: 20px">
+                    <div class="row" style="padding-bottom: 20px">
+                        <label><b>Quantity:&nbsp;</b></label>
+                        <b style="color:lightpink;padding-left: 40px">1</b>
+                    </div>
+
+                    <div class="row" style="padding-bottom: 30px;padding-top: 50px">
+                        <button style="color: hotpink" (click)="removeItemfromCart(each.id)"><b>Delete</b></button>&nbsp; |&nbsp; <button style="color: hotpink"><b>Save for Later</b></button>
+                    </div>
+
+                    <!--div class="row" style="padding-bottom: 20px">
+                        <label><b>Owner name:&nbsp;</b></label>
+                        <b style="color:lightpink;padding-left: 15px">{{each.ownerName}}</b>
+                    </div-->
+                </div>
+                <div class="column" style="padding-left: 20px;padding-top:20px ">
+                    <div class="row" style="padding-bottom: 20px">
+                        <label><h3>Price:&nbsp;</h3></label>
+                        <h2 style="color:lightpink;padding-left: 40px">$ {{each.price}}</h2>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    <div style="padding-bottom: 20px;padding-top: 20px" *ngIf="!checkedOut">
+        <button class="btn-primary btn btn-sm" (click)="checkout()" style="margin-left: 47%;">Checkout</button>
+    </div>
+
+    <div *ngIf="checkedOut" style="padding-bottom: 20px">
+        <h2 style="font-style: italic;text-align: center;font-weight: lighter;font-family:serif;color:hsl(343, 37%, 93%);text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    ">Checkout</h2>
+    </div>
+    <div class="checkout-body" style="border-style: groove;border-color: lightpink;border-width: 2px;margin-left: 450px;margin-right: 500px" *ngIf="checkedOut">
+
+        <div style="margin-left: 30%;padding-top: 20px;margin-right: 25%">
+        <b style="color: lightpink">Do you have a promocode?</b>
+            <div style="padding-top: 10px;padding-bottom: 10px">
+        <input style=" margin-left:20px;height: 20px" type="text" placeholder="Enter promocode here" [(ngModel)]="promocode"  required>
+            </div>
+            <!--input style="margin-left: 60px;height: 30px" type="text" placeholder="Enter fromDate" [(ngModel)]="fromDate"  required>
+            <input style="margin-left: 60px;height: 30px" type="text" placeholder="Enter toDate " [(ngModel)]="toDate"  required-->
+            <div style="padding-bottom: 10px">
+                <b style="color: lightpink">Enter from Date* &nbsp;&nbsp;</b>
+                <div style="padding-top: 10px">
+                <input style="margin-left: 10px" matInput [matDatepicker]="picker" [(ngModel)]="fromDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                </div>
+            </div>
+
+            <div>
+                <b style="color: lightpink">Enter to Date* &nbsp;&nbsp;</b>
+                <div style="padding-top: 10px">
+            <input style=" margin-left:10px;" matInput [matDatepicker]="picker2" [(ngModel)]="toDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+                </div>
+            </div>
+        <div style="padding-left:50px;padding-top: 20px;padding-bottom: 20px" *ngIf="!calPrice">
+            <button class="btn-primary btn btn-sm" (click)="calculatePrice()">Next</button>
+        </div>
+        <div *ngIf="calPrice">
+            <div class="row" style="padding-bottom: 20px;padding-top: 20px">
+                <label for="ins"><b>Total Price:&nbsp;</b></label>
+                <b style="font-size:25px;color:lightpink;padding-left: 40px;font-style: italic;text-align: center;font-weight: lighter;font-family:serif;color:hsl(343, 37%, 93%);text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    " id="ins">
+                    {{totalPrice}}
+                </b>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div style="padding-top: 20px" *ngIf="calPrice">
+        <button class="btn-primary btn btn-sm" (click)="proceed()" style="margin-left: 47%;">Proceed</button>
+    </div>
+
+
+</div>

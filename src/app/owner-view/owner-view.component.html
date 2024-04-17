@@ -1,0 +1,169 @@
+<div  class="back">
+    <div class="row" style="padding-bottom: 20px">
+        <div class="row-cols-6">
+            <h2 style="color:#f4623a;text-transform: uppercase "><b>RENT&PLAY</b></h2>
+        </div>
+        <div class="row-cols-6" style="">
+            <button class="btn btn-primary btns-m" (click)="routeToHome()">Back</button>
+        </div>
+
+    </div>
+<mat-tab-group class="tab-group"  mat-align-tabs="center" [selectedIndex]="0" style="margin-left: 6rem;margin-right: 5rem">
+    <mat-tab label="Post new Instrument">
+        <form  [formGroup]="instrForm" (ngSubmit)="uploadInstrument()">
+            <div class="row" style="padding-top: 40px">
+                <label for="name"style="padding-right: 60px;"><b>Name*</b></label>
+                <input  type="text" style="height: 20px" size="70%" placeholder="Enter Instrument name" id="name" class="form-control" formControlName="name"  required>
+                <div *ngIf="submitted && instrForm.controls.name.errors" class="error">
+                    <div class="text-danger" *ngIf="instrForm.controls.name.errors.required">
+                        Instrument name is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 40px">
+                <label for="category"style="padding-right: 35px"><b>Category*</b></label>
+                <input  type="text" style="height: 20px" size="70%" placeholder="Enter Instrument category" id="category" class="form-control" formControlName="category"  required>
+                <div *ngIf="submitted && instrForm.controls.category.errors" class="error">
+                    <div class="text-danger" *ngIf="instrForm.controls.category.errors.required">
+                        category is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 40px">
+                <label for="brand"style="padding-right: 60px"><b>Brand*</b></label>
+                <input  type="text" style="height: 20px" size="70%" placeholder="Enter Instrument brand" id="brand" class="form-control" formControlName="brand"  required>
+                <div *ngIf="submitted && instrForm.controls.brand.errors" class="error">
+                    <div class="text-danger" *ngIf="instrForm.controls.brand.errors.required">
+                         brand is required
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="padding-top: 40px">
+                <label for="price"style="padding-right: 65px"><b>Price*</b></label>
+                <input  type="text" style="height: 20px" size="70%" placeholder="Enter price" id="price" class="form-control" formControlName="price"  required>
+                <div *ngIf="submitted && instrForm.controls.price.errors" class="error">
+                    <div class="text-danger" *ngIf="instrForm.controls.price.errors.required">
+                        Price is required
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="padding-top: 40px">
+                <label for="age"style="padding-right: 70px"><b>Age*</b></label>
+                <input  type="text" style="height: 20px" size="70%" placeholder="Enter age" id="age" class="form-control" formControlName="age"  required>
+                <div *ngIf="submitted && instrForm.controls.age.errors" class="error">
+                    <div class="text-danger" *ngIf="instrForm.controls.age.errors.required">
+                        Instrument age is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 40px">
+                <label for="img1"style="padding-right: 50px"><b>Image 1*</b></label>
+                <input  type="file" style="height: 20px" size="70%" placeholder="Upload image" id="img1"   (change)="getMediaLink($event,'IMAGE')"  required>
+            </div>
+
+            <div class="row" style="padding-top: 40px">
+                <label for="img2"style="padding-right: 50px"><b>Image 2*</b></label>
+                <input  type="file" size="70%" style="height: 20px" placeholder="Upload image" id="img2"   (change)="getMediaLink($event,'IMAGE')"  required>
+            </div>
+
+            <div class="row" style="padding-top: 40px">
+                <label for="v1"style="padding-right: 68px"><b>Video*</b></label>
+                <input  type="file" style="height: 20px" size="70%" placeholder="Upload image" id="v1" (change)="getMediaLink($event,'VIDEO')"  required>
+            </div>
+
+            <div style="padding-top: 50px;padding-left: 5rem">
+                <button type="submit" class="btn btn-primary btn-lg">Proceed</button>
+            </div>
+
+        </form>
+    </mat-tab>
+    <mat-tab label="My Instruments">
+        <!--div class="row" style="padding-top: 10px">
+            <button class="btn-primary btn" (click)="getPastInstruments()">Fetch</button>
+        </div-->
+        <div class="container">
+            <table>
+
+                <tbody class="search-grid" >
+
+
+                <td *ngFor="let searches of search" style="background-color:antiquewhite; border-style:groove">
+                    <tr><th>Instrument &nbsp;</th>   {{ searches.instrumentName }}</tr>
+                    <ul *ngFor="let media of searches.MediaLinks">
+                        <tr><img src={{media.mediaLink}} class="instrumentimg"></tr>
+                    </ul>
+                    <tr><th>ID</th>{{searches.id}}</tr>
+                    <tr><th>Category</th> {{ searches.instrumentCategory }}</tr>
+                    <tr><th>Brand&nbsp; </th> {{ searches.brandName }}</tr>
+                    <tr><th>Monthly rental rate&nbsp; </th> {{ searches.price}} $</tr>
+                    <tr><th>Rating &nbsp;</th> {{searches.averageRating}}</tr>
+                    <br>
+                    <button class="btn btn-primary" (click)="customerRequest(searches.id)" style="padding:2px;margin-left:12px;">View Customer requests</button>
+                   
+                </td>
+                </tbody>
+            </table>
+            <br>
+           
+
+            <!-- <div>
+                <h2 style="text-align: center; font-family:cursive;display:none">Customer requests</h2>
+                <br>
+                <div>
+                    <p #name>
+                    <p #start>
+                    <p #end>
+                    <p #map>   
+                    </div> -->
+                <!-- <table style="color:black; background-color:antiquewhite;margin-left:12%" class="customercontent">
+          
+                    <tbody>
+                      
+                      <tr>
+                        <th></th>
+                        <th>Renter Name</th>
+                        <th>Instrument Name</th>
+                        <th>Instrument</th>
+                        <th>Instrument Category</th>
+                        <th>Brand</th>
+                        <th>Price paid</th>
+                        <th style="width:150px">Rental Start Date</th>
+                        <th style="width:150px">Rental End Date</th>
+                        <th>Location details:</th>
+                        
+                        
+                     
+                      </tr>
+                     
+                      <tr *ngFor="let req of pinfos" style="height:300px;text-align: center;">
+                        <td>{{req.id}}</td>
+                        <td><div *ngIf="req.id===5">Cole Metger</div><div *ngIf="req.id===6">Manideep Regonda</div></td>
+                        <td>{{req.instrumentName}}</td>
+                        <td *ngIf="req.MediaLinks.length>0"><img src={{req.MediaLinks[0].mediaLink}} class="instrumentimg"></td>
+                        <td>{{req.instrumentCategory}}</td>
+                        <td>{{req.brandName}}</td>
+                        <td>{{req.price}}$ </td>
+                        <td>{{req.fromDate}}</td>
+                        <td>{{req.toDate}}</td>
+                        <td><div *ngIf="req.id===5" id="map"></div><div *ngIf="req.id===6" id="map2"></div></td>
+                        
+                       
+                      </tr>
+                      
+                      
+                    </tbody>
+                  </table>
+                  -->
+                 
+            <!-- </div> -->
+        </div>
+    </mat-tab>
+</mat-tab-group>
+</div>

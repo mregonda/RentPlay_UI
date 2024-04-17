@@ -1,0 +1,8 @@
+.idea
+.angular
+dist
+/.angular/cache/
+
+/.angular/cache/14.2.3/babel-webpack/
+node_modules
+node_modules

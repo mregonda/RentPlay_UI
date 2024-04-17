@@ -1,0 +1,72 @@
+
+<body id="page-top">
+  
+  
+  <header class="masthead">
+  
+    <div class="container">
+      <a class="btn btn-primary fixed-top1 py-3" [routerLink]="['/home']"><- Back</a>
+    <h2 class="text-uppercase font-weight-bold fixed-top py-3" style="color:#f4623a;padding-left:30px;margin-top:0%;margin-top:0px;font-size: 30px;">Rent&Play</h2>
+   
+  </div>
+    <h1 style="font-style: italic;text-align: center;font-weight: lighter;font-family:serif;color:hsl(343, 37%, 93%);text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    ">Instrument details</h1>
+        
+    
+
+    
+        
+<!-- trying new way -->
+<div class="instrrow">
+    <div class="column1" style="font-family:cursive;">
+        <h2>Instrument:</h2>
+        <h3 class="instrumentimg">Instrument photo:</h3>
+        <h3>Brand:</h3>
+        <h3>Category:</h3>
+        <h3>Monthly rental rate:</h3>
+        <h3>Age:</h3>
+        <h3>Rating:</h3>
+        <h3>Reviews:</h3>
+        <h3>Location Details:</h3>
+    </div>
+    <div class="column2" style="color: whitesmoke;font-family:cursive;">
+      <h3>{{ search.instrumentName }}</h3>
+      
+    <!-- <div>
+
+      
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+        (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let slide of search.MediaLinks" >
+          <img src={{slide.mediaLink}} alt=" " class="instrumentimg">
+        </div>
+      </ngx-slick-carousel>
+      
+      </div> -->
+      
+      <h3 *ngIf="search.MediaLinks.length>0"><img src={{search.MediaLinks[0].mediaLink}} class="instrumentimg"></h3>
+      <h3>{{ search.brandName }}</h3>
+      <h3>{{ search.instrumentCategory }}</h3>
+      <h3>{{ search.price}} $</h3>
+      <h3>{{ search.age }} months</h3>
+      <h3 *ngIf="rating.length>0">
+        <div  *ngFor="let rat of rating">
+      {{rat}}/10</div></h3>
+      <h3 *ngIf="rating.length==0">No ratings yet</h3>
+        
+        <h3 *ngIf="review.length>0">
+        <div  *ngFor="let rev of review">
+      "{{rev}}"</div></h3>
+      <h3 *ngIf="review.length==0">No reviews yet</h3>
+        
+        
+      <div id="map">
+    </div>
+    <h3><button class="btn-primary" (click)="addToCart()">Add to Cart</button></h3>
+    </div>
+  </div>
+  
+
+
+        </header>
+</body>

@@ -1,0 +1,45 @@
+<body id="page-top">
+  
+  
+    <header class="masthead"> 
+      <div class="container">
+        <a class="btn btn-primary fixed-top1 py-3" [routerLink]="['/owner']" style="padding: 5px;"><= Back</a>
+      <h2 class="text-uppercase font-weight-bold fixed-top py-3" style="color:#f4623a;padding-left:30px;margin-top:0%;margin-top:0px;font-size: 30px;">Rent&Play</h2>
+      </div>
+      <br>
+      <br>
+      <h2 style="text-align: center; font-family:cursive;">Customer requests</h2>
+      <br>
+      <h3 *ngIf="details==null" style="text-align:center">
+        
+        No customer requests yet!</h3>
+      <table *ngIf="details!=null" style="color:black; background-color:antiquewhite;margin-left:22%" class="customercontent">
+          
+        <tbody>
+          
+          <tr>
+            
+            <th>Renter Email</th>
+            <th style="width:150px">Rental Start Date</th>
+            <th style="width:150px">Rental End Date</th>
+            <th>Customer Location</th>
+            
+            
+         
+          </tr>
+         <tr>
+         
+            <td>{{details.email}}</td>
+            <td>{{details.startDate}}</td>
+            <td>{{details.endDate}}</td> 
+            <td><div id="map"></div></td>
+           
+          </tr>
+          
+  
+          
+        </tbody>
+      </table>
+    
+    </header>
+</body>

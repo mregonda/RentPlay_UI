@@ -1,0 +1,53 @@
+.back
+{
+    padding-bottom: calc(10rem - 4.5rem);
+    background: linear-gradient(to bottom, rgba(100, 84, 73, 0.95) 0%, rgba(105, 89, 77, 0.95) 100%), url("src/assets/img11.svg");
+    background-position: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    height:1000px;
+    overflow-y: auto;
+}
+.instrrow {
+    display: flex;
+    margin-left: 450px;
+    margin-right: 450px;
+    margin-top: 10px;
+    opacity: 1.8;
+    border-style: groove;
+    border-color: lightpink;
+    border-width: 2px;
+    font-size: large
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.btn {
+    font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.btn-primary {
+    color: deeppink;
+    background-color: white;
+}
+.py-3 {
+    padding-top: 5px !important;
+    padding-bottom: 1rem !important;
+}
+.btn-lg, .btn-group-lg > .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+.btn-sm, .btn-group-sm > .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}

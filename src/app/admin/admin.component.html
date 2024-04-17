@@ -1,0 +1,74 @@
+<body id="page-top">
+  
+    
+    <header class="masthead"> 
+      <div class="container">
+      <h2 class="text-uppercase font-weight-bold fixed-top py-3" style="color:#f4623a;padding-left:30px;margin-top:0%;margin-top:0px;font-size: 30px;">Rent&Play</h2>
+        <button class="btn btn-primary " style="margin-left: 1500px;margin-top:2px;padding: 10px;font-size: medium;" (click)="routeToHome()">Back</button>
+    </div>
+      <div>
+        <br><br>
+      <div>
+        <h2 class="title"> Complaints </h2>
+        <!-- <table>
+          
+            <tbody>
+              
+  
+              <td style="background-color:antiquewhite; border-style:groove">
+                <tr><th>Instrument</th>  </tr>
+                <tr><th>Brand</th></tr>
+                <tr><th>Monthly rental rate</th> </tr>
+                <tr><th>Rating</th></tr>
+                <tr><button class="btn-primary">Approve</button></tr>
+              </td>
+              
+              
+            </tbody>
+          </table> -->
+          
+         <p class="title"> No complaints currently..
+      </div>
+<br><br><br>
+      <div>
+       <h2 class="title"> Active Orders </h2>
+        <table style="color:black; background-color:antiquewhite; border-style:groove" class="admincontent">
+          
+            <tbody >
+              
+              <tr>
+              
+                <th>ID</th> 
+                <th>Rentee id</th>
+                <th>Owner id</th>
+                <th>Instrument Owner</th>
+                <th>Total Price</th>
+                <th>Start Date</th> 
+                <th>End Date</th>
+                <th>Approve/Reject</th>
+                <th>Status</th>
+             
+              </tr>
+             
+              <tr *ngFor="let req of info" >
+                
+                <td>{{req.id}}</td>
+                <td>{{req.ins_renter_details_id}}</td>
+                <td>{{req.ownerID}}</td>
+                <td>{{req.ownerName}}</td>
+                <td>{{req.totalPrice}} </td>
+                <td>{{req.fromDate}}</td>
+                <td>{{req.toDate}}</td>
+                <td><button class="btn-primary" (click)="ApproveRequest(req.id)" >Approve</button> &nbsp;&nbsp;
+                <button class="btn-primary" (click)="RejectRequest()">Reject</button></td>
+                <td #demo></td>
+                
+              </tr>
+              
+              
+            </tbody>
+          </table>
+      </div>
+      </div>
+    </header>
+</body>

@@ -1,0 +1,111 @@
+
+<body id="page-top">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <h2 class="text-uppercase font-weight-bold" style="color:#f4623a;padding-right:30px;margin-top: 0px;">Rent&Play</h2>
+            <div>
+            <input type="text" placeholder="Search instrument" [(ngModel)]="searchTerm" size="30px" style="margin-top: 0px" #instrument (keyup)="autocomplete()">
+            <div  *ngIf="values.length>0" class="drop-down-container">
+            <div>
+                <div *ngFor="let instr of values" (click)="selectSearch(instr)">{{instr}}</div>
+            </div>
+            </div>
+            </div>
+            <input type="text"  placeholder="IN" disabled size="2px">
+            <input type="text"  placeholder="Enter location" size="20px">
+            <button  class="btn btn-primary btn-sm" (click)="postSearch(instrument.value)">Search</button>
+            <div *ngIf="isOwner && !isAdmin && loggedIn" style="padding-left: 50px;">
+                <button class="btn btn-primary btn-sm" (click)="routeToOwner()">My Instruments</button>
+            </div>
+            <div *ngIf="isAdmin && loggedIn" style="padding-left: 80px;">
+                <button class="btn btn-primary btn-sm" (click)="routeToAdmin()">View Requests</button>
+            </div>
+            <div style="float: right;padding-left: 20%;">
+                <a *ngIf="!isAdmin && loggedIn" class="btn btn-primary btn-sm" style="color: white" (click)="routeToCart()">Cart</a>
+            </div>
+            <div *ngIf="loggedIn" style="padding-left: 15px;color:black"><a (click)="routeToCustomer()">Welcome, {{username}}</a></div>
+            <div></div>
+            <div style="float: right;padding-left: 80px" *ngIf="!loggedIn">
+            <a class="btn btn-primary btn-sm" [routerLink]="['/login']">Login</a>
+            </div>
+            <div style="float: right;padding-left: 80px" *ngIf="loggedIn">
+                <a class="btn btn-primary btn-sm" (click)="logout()">Logout</a>
+                </div>
+        </div>
+    
+        
+    </div>
+</nav>
+
+
+<!-- Masthead-->
+<header class="masthead">
+    <div class="filter-body row" style="padding-top: 30px">
+        <div style="color: antiquewhite;padding-left: 15px;padding-bottom: 15px;">
+            <h5 class="text-uppercase font-weight-bold">FILTER BY-</h5>
+        </div>
+            <div style="padding-left: 40px">
+                <select [(ngModel)]="selectedFilter" style="width: 120px" (change)="getSubFilters()">
+                    <option *ngFor="let filter of filterTypes" [value]="filter.value">
+                        {{filter.value}}
+                    </option>
+                </select>
+            </div>
+        <div style="padding-left: 40px">
+            <select [(ngModel)]="selectedSubFilter" style="width: 200px" (change)="filterInstruments()">
+                <option *ngFor="let subfilter of subfilters" [value]="subfilter.value">
+                    {{subfilter.value}}
+                </option>
+            </select>
+        </div>
+
+        </div>
+        <marquee class="coupon" behavior="scroll" direction="left">Get 10% off on your 1st rental! Use the promocode "RENT&PLAY10"  during checkout!</marquee>
+        
+    <div class="search-container" >
+       
+        <h2 style="text-align:center; font-family:Lato; padding-top: 10px;color: #f4623a">Our Rental Collection</h2>
+        <!--p *ngIf="search.length<1" style="z-index:1; text-align:center">0 instrument rentals for this items
+            </p-->
+        <table *ngIf="resultLength != 0">
+
+            <tbody class="search-grid" >
+            <td *ngFor="let searches of search" style="background-color:antiquewhite; border-style:groove;width: 255px;height:360px">
+              <tr><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument:</th>&nbsp;&nbsp;   {{ searches.instrumentName }}</tr><br>
+            <tr *ngIf="searches.MediaLinks.length>0"><img src={{searches.MediaLinks[0].mediaLink}} class="instrumentimg"></tr><br>
+              <!-- <tr><th>Category</th> {{ searches.instrumentCategory }}</tr> -->
+              <tr><th>&nbsp;&nbsp;Brand</th>&nbsp;&nbsp;{{ searches.brandName }}</tr>
+              <tr><th>&nbsp;&nbsp;Monthly rate</th>&nbsp;&nbsp;{{ searches.price}} $</tr>
+              <!-- <tr><th>Age</th> {{ searches.age }}</tr> -->
+              <tr><th>&nbsp;&nbsp;Rating</th>&nbsp;&nbsp;     {{searches.averageRating}}</tr><br>
+              <tr><button  (click)="instrumentDetail(searches.id)" class="btn-primary" style="padding:2px;margin-left: 60px;">View Details</button></tr>
+            </td>
+
+            </tbody>
+          <div *ngIf="resultLength == 0">
+            0 instrument rentals for this items
+            </div>
+        </table>
+    </div>
+    
+</header>
+
+
+
+<footer class="bg-light">
+    <div class="container"><div class="small text-center text-muted">Copyright © 2022- Rent&Play</div></div>
+</footer>
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/639554f4daff0e1306dc0f76/1gjvl7mq4';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+
+</body>
